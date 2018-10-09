@@ -45,6 +45,7 @@ module.exports = yeoman.generators.Base.extend({
     this._writingGulp();
     this._writingPackageJson();
     this._writingReadme();
+    this._writingTestDir();
     this._writingBowerJson();
   },
   _writingGulpDir:function() {
@@ -53,10 +54,17 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('./build')
     );
   },
-  _writingSrcDir:function() {
+  _writingSrcDir: function () {
     this.fs.copyTpl(
       this.templatePath('./src/next-template.js'),
-      this.destinationPath('./src/'+this.props.project_name+'.js'),
+      this.destinationPath('./src/' + this.props.project_name + '.js'),
+      this.props
+    );
+  },
+  _writingTestDir: function () {
+    this.fs.copyTpl(
+      this.templatePath('./test/test.js'),
+      this.destinationPath('./test/test.js'),
       this.props
     );
   },
