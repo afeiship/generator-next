@@ -6,36 +6,46 @@ const yoHelper = require('yeoman-generator-helper');
 const nx = require('next-js-core2');
 require('next-camelize');
 
-
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the awesome ' + chalk.red('generator-next-class') + ' generator!'
-    ));
+    this.log(yosay('Welcome to the awesome ' + chalk.red('generator-next-class') + ' generator!'));
 
-    let prompts = [{
-      type: 'input',
-      name: 'project_name',
-      message: 'Your project_name (eg: like this `next-json` )?',
-      default: yoHelper.discoverRoot
-    }, {
-      type: 'input',
-      name: 'description',
-      message: 'Your description?'
-    }];
+    let prompts = [
+      {
+        type: 'input',
+        name: 'project_name',
+        message: 'Your project_name (eg: like this `next-json` )?',
+        default: yoHelper.discoverRoot
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Your description?'
+      }
+    ];
 
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
+    return this.prompt(prompts).then(
+      function(props) {
+        // To access props later use this.props.someAnswer;
+        this.props = props;
+      }.bind(this)
+    );
   }
 
   writing() {
     yoHelper.rewriteProps(this.props);
     this.props.ShortProjectName = this.props.ProjectName.slice(4);
+    // this._writtingPretieer();
     this._writingTplFiles();
     this._writingTemplate();
+  }
+
+  _writtingPretieer() {
+    console.log('Download some common configuration files...')
+    this.remote('afeiship', 'configuration-files', 'master', function(err, remote) {
+      remote.copy('.prettierrc', '.');
+    });
   }
 
   _writingTplFiles() {

@@ -21,6 +21,7 @@
     "next-js-core2": "github:afeiship/next-js-core2",
     "yeoman-generator": "^1.0.0",
     "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
+    "yeoman-remote": "^1.0.1",
     "yosay": "^2.0.0"
   },
   "devDependencies": {
