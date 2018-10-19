@@ -42,6 +42,7 @@ module.exports = class extends Generator {
   }
 
   _writtingPretieer() {
+    // TODO: remote/fetch method has been removed?
     console.log('Download some common configuration files...')
     this.remote('afeiship', 'configuration-files', 'master', function(err, remote) {
       remote.copy('.prettierrc', '.');
