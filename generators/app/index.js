@@ -2,8 +2,10 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const path = require('path');
 const yoHelper = require('yeoman-generator-helper');
 const nx = require('next-js-core2');
+const remote = require('yeoman-remote');
 require('next-camelize');
 
 module.exports = class extends Generator {
@@ -36,16 +38,19 @@ module.exports = class extends Generator {
   writing() {
     yoHelper.rewriteProps(this.props);
     this.props.ShortProjectName = this.props.ProjectName.slice(4);
-    // this._writtingPretieer();
+    this._writtingPretieer();
     this._writingTplFiles();
     this._writingTemplate();
   }
 
   _writtingPretieer() {
-    // TODO: remote/fetch method has been removed?
-    console.log('Download some common configuration files...')
-    this.remote('afeiship', 'configuration-files', 'master', function(err, remote) {
-      remote.copy('.prettierrc', '.');
+    var self = this;
+    remote('afeiship', 'configuration-files', 'master', function(err, cachePath) {
+      self.fs.copyTpl(
+        path.join(cachePath, '.prettierrc'),
+        self.destinationPath('.prettierrc'),
+        self.props
+      );
     });
   }
 
