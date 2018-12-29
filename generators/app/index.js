@@ -56,7 +56,7 @@ module.exports = class extends Generator {
 
   _writingTplFiles() {
     this.fs.copyTpl(
-      this.templatePath('{*,test/*.*,build/*}'),
+      this.templatePath('{.*,*,test/*.*,build/*}'),
       this.destinationPath('.'),
       this.props
     );
