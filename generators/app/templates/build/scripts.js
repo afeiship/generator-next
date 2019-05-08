@@ -13,10 +13,10 @@
 
   const niceComments = nx.niceComments(
     [
-      'name: <%= pkg.name %>',
-      'url: <%= pkg.homepage %>',
-      'version: <%= pkg.version %>',
-      'license: <%= pkg.license %>'
+      'name: <%%= pkg.name %%>',
+      'url: <%%= pkg.homepage %%>',
+      'version: <%%= pkg.version %%>',
+      'license: <%%= pkg.license %%>'
     ],
     'js'
   );
@@ -28,11 +28,7 @@
       .pipe(gulp.dest('dist'))
       .pipe($.size({ title: '[ default size ]:' }))
       .pipe($.uglify(config.uglifyOptions))
-      .pipe(
-        $.rename({
-          extname: '.min.js'
-        })
-      )
+      .pipe($.rename({ extname: '.min.js' }))
       .pipe(gulp.dest('dist'))
       .pipe($.size({ title: '[ minimize size ]:' }));
   });
