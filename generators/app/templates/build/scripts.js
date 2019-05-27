@@ -13,23 +13,26 @@
 
   const niceComments = nx.niceComments(
     [
-      'name: <%%= pkg.name %%>',
-      'url: <%%= pkg.homepage %%>',
-      'version: <%%= pkg.version %%>',
-      'license: <%%= pkg.license %%>'
+      'name: <%= pkg.name %>',
+      'url: <%= pkg.homepage %>',
+      'version: <%= pkg.version %>',
+      'license: <%= pkg.license %>'
     ],
     'js'
   );
 
-  gulp.task('scripts', function() {
-    return gulp
-      .src('src/*.js')
-      .pipe($.header(niceComments, { pkg: pkg }))
-      .pipe(gulp.dest('dist'))
-      .pipe($.size({ title: '[ default size ]:' }))
-      .pipe($.uglify(config.uglifyOptions))
-      .pipe($.rename({ extname: '.min.js' }))
-      .pipe(gulp.dest('dist'))
-      .pipe($.size({ title: '[ minimize size ]:' }));
-  });
+  gulp.task(
+    'scripts',
+    gulp.parallel(function() {
+      return gulp
+        .src('src/*.js')
+        .pipe($.header(niceComments, { pkg: pkg }))
+        .pipe(gulp.dest('dist'))
+        .pipe($.size({ title: '[ default size ]:' }))
+        .pipe($.uglify(config.uglifyOptions))
+        .pipe($.rename({ extname: '.min.js' }))
+        .pipe(gulp.dest('dist'))
+        .pipe($.size({ title: '[ minimize size ]:' }));
+    })
+  );
 })();
