@@ -13,10 +13,10 @@
 
   const niceComments = nx.niceComments(
     [
-      'name: <%= pkg.name %>',
-      'url: <%= pkg.homepage %>',
-      'version: <%= pkg.version %>',
-      'license: <%= pkg.license %>'
+      'name: <%%= pkg.name %%>',
+      'url: <%%= pkg.homepage %%>',
+      'version: <%%= pkg.version %%>',
+      'license: <%%= pkg.license %%>'
     ],
     'js'
   );
