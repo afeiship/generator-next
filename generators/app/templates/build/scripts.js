@@ -16,6 +16,7 @@
       'name: <%%= pkg.name %%>',
       'url: <%%= pkg.homepage %%>',
       'version: <%%= pkg.version %%>',
+      'date: ' + new Date().toISOString(),
       'license: <%%= pkg.license %%>'
     ],
     'js'
