@@ -3,7 +3,6 @@
 
   const gulp = require('gulp');
   const pkg = require('../package.json');
-  const config = require('./config');
   const saveLicense = require('uglify-save-license');
   const $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'gulp.*', 'del']
@@ -33,7 +32,7 @@
         .pipe(gulp.dest('dist'))
         .pipe($.size({ title: '[ default size ]:' }))
         .pipe($.ignore('*.js.map'))
-        .pipe($.uglify(config.uglifyOptions))
+        .pipe($.uglify({ output: { comments: saveLicense } }))
         .pipe($.rename({ extname: '.min.js' }))
         .pipe(gulp.dest('dist'))
         .pipe($.size({ title: '[ minimize size ]:' }));
