@@ -1,47 +1,80 @@
 {
-  "name": "generator-next-class",
-  "version": "1.0.0",
-  "description": "Yeoman generator for git project.",
-  "homepage": "git@github.com:afeiship/generator-next-class.git",
+  "name": "generator-next",
+  "version": "0.0.0",
+  "description": "Generator for next.",
+  "homepage": "https://github.com/afeiship/generator-next",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com",
-    "url": ""
+    "url": "https://github.com/afeiship"
   },
   "files": [
     "generators"
   ],
   "main": "generators/index.js",
   "keywords": [
+    "next",
+    "class",
+    "package",
     "yeoman-generator"
   ],
+  "devDependencies": {
+    "yeoman-test": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "eslint": "^5.9.0",
+    "prettier": "^1.15.2",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-config-xo": "^0.25.0",
+    "jest": "^23.5.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
   "dependencies": {
-    "chalk": "^1.1.3",
+    "chalk": "^2.1.0",
     "next-camelize": "github:afeiship/next-camelize",
-    "next-js-core2": "github:afeiship/next-js-core2",
-    "yeoman-generator": "^1.0.0",
+    "replace-in-file": "^4.1.3",
+    "yeoman-generator": "^2.0.1",
     "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
     "yeoman-remote": "^1.0.1",
-    "yosay": "^2.0.0"
+    "yosay": "^2.0.1"
   },
-  "devDependencies": {
-    "eslint-config-xo-space": "^0.7.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^1.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.0.0",
-    "gulp-nsp": "^2.1.0",
-    "gulp-plumber": "^1.0.0",
-    "yeoman-assert": "^2.0.0"
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": [
+      "xo",
+      "prettier"
+    ],
     "env": {
-      "mocha": true
-    }
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
   },
-  "repository": "git@github.com:afeiship/generator-github.git",
-  "scripts": {},
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest"
+  },
+  "repository": "git@github.com:afeiship/generator-next.git",
   "license": "MIT"
 }
