@@ -38,6 +38,8 @@ module.exports = class extends Generator {
       function(props) {
         this.props = props;
         yoHelper.rewriteProps(props);
+        console.log("this.props.ProjectName", this.props.ProjectName);
+
         this.props.shortProjectName = nx.camelize(
           this.props.ProjectName.slice(4)
         );
