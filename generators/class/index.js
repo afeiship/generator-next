@@ -38,7 +38,6 @@ module.exports = class extends Generator {
       function(props) {
         this.props = props;
         yoHelper.rewriteProps(props);
-        console.log("this.props", this.props);
         this.props.ShortProjectName = this.props.ProjectName.slice(4);
       }.bind(this)
     );
