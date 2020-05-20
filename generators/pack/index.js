@@ -5,11 +5,11 @@ const yosay = require("yosay");
 const glob = require("glob");
 const { resolve } = require("path");
 const remote = require("yeoman-remote");
-const yoHelper = require("yeoman-generator-helper");
+const yoHelper = require("@feizheng/yeoman-generator-helper");
 const replace = require("replace-in-file");
 const fs = require("fs");
 
-require("next-camelize");
+require("@feizheng/next-camelize");
 
 module.exports = class extends Generator {
   prompting() {
