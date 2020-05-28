@@ -23,6 +23,12 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: "input",
+        name: "scope",
+        message: "Your scop (eg: `bable` )?",
+        default: 'feizheng'
+      },
+      {
+        type: "input",
         name: "project_name",
         message: "Your project_name (eg: `next-boilerplate-package` )?",
         default: yoHelper.discoverRoot
@@ -35,7 +41,7 @@ module.exports = class extends Generator {
     ];
 
     return this.prompt(prompts).then(
-      function(props) {
+      function (props) {
         this.props = props;
         yoHelper.rewriteProps(props);
         this.props.shortProjectName = nx.camelize(
@@ -51,7 +57,7 @@ module.exports = class extends Generator {
     remote(
       "afeiship",
       "boilerplate-next-package",
-      function(err, cachePath) {
+      function (err, cachePath) {
         // copy files:
         this.fs.copy(
           glob.sync(resolve(cachePath, "{**,.*}")),
@@ -63,18 +69,19 @@ module.exports = class extends Generator {
   }
 
   end() {
-    const { project_name, description, shortProjectName } = this.props;
+    const { scope, project_name, description, shortProjectName } = this.props;
     const files = glob.sync(resolve(this.destinationPath(), "{**,.*}"));
     const dest = this.destinationPath();
 
     replace.sync({
       files,
       from: [
+        /boilerplate-scope/g,
         /next-boilerplate-package-description/g,
         /next-boilerplate-package/g,
         /boilerplatePackage/g
       ],
-      to: [description, project_name, shortProjectName]
+      to: [scope, description, project_name, shortProjectName]
     });
 
     fs.renameSync(

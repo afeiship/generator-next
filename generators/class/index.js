@@ -23,6 +23,12 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: "input",
+        name: "scope",
+        message: "Your scop (eg: `bable` )?",
+        default: 'feizheng'
+      },
+      {
+        type: "input",
         name: "project_name",
         message: "Your project_name (eg: `next-boilerplate-class` )?",
         default: yoHelper.discoverRoot
@@ -60,13 +66,14 @@ module.exports = class extends Generator {
   }
 
   end() {
-    const { project_name, description, ShortProjectName } = this.props;
+    const { scope,  project_name, description, ShortProjectName } = this.props;
     const files = glob.sync(resolve(this.destinationPath(), "{**,.*}"));
     const dest = this.destinationPath();
 
     replace.sync({
       files,
       from: [
+        /boilerplate-scope/g,
         /next-boilerplate-class-description/g,
         /next-boilerplate-class/g,
         /BoilerplateClass/g
