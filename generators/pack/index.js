@@ -24,7 +24,7 @@ module.exports = class extends Generator {
       {
         type: "input",
         name: "scope",
-        message: "Your scop (eg: `bable` )?",
+        message: "Your scope (eg: `babel` )?",
         default: 'feizheng'
       },
       {
