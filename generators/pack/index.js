@@ -10,6 +10,11 @@ const replace = require("replace-in-file");
 const fs = require("fs");
 
 require("@feizheng/next-camelize");
+require('@afeiship/next-npm-registries');
+
+const NPM_CHOICES = ['npm', 'github', 'alo7'].map(item => {
+  return { name: item, value: nx.npmRegistries(item) };
+});
 
 module.exports = class extends Generator {
   prompting() {
@@ -26,6 +31,12 @@ module.exports = class extends Generator {
         name: "scope",
         message: "Your scope (eg: `babel` )?",
         default: 'feizheng'
+      },
+      {
+        type: 'list',
+        name: 'registry',
+        message: 'Your registry',
+        choices: NPM_CHOICES
       },
       {
         type: "input",
@@ -59,9 +70,10 @@ module.exports = class extends Generator {
       "boilerplate-next-package",
       function (err, cachePath) {
         // copy files:
-        this.fs.copy(
+        this.fs.copyTpl(
           glob.sync(resolve(cachePath, "{**,.*}")),
-          this.destinationPath()
+          this.destinationPath(),
+          this.props
         );
         done();
       }.bind(this)

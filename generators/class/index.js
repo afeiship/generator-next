@@ -9,6 +9,12 @@ const yoHelper = require("@feizheng/yeoman-generator-helper");
 const replace = require("replace-in-file");
 const fs = require("fs");
 
+require('@afeiship/next-npm-registries');
+
+const NPM_CHOICES = ['npm', 'github', 'alo7'].map(item => {
+  return { name: item, value: nx.npmRegistries(item) };
+});
+
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
@@ -28,6 +34,12 @@ module.exports = class extends Generator {
         default: 'feizheng'
       },
       {
+        type: 'list',
+        name: 'registry',
+        message: 'Your registry',
+        choices: NPM_CHOICES
+      },
+      {
         type: "input",
         name: "project_name",
         message: "Your project_name (eg: `next-boilerplate-class` )?",
@@ -40,13 +52,11 @@ module.exports = class extends Generator {
       }
     ];
 
-    return this.prompt(prompts).then(
-      function (props) {
-        this.props = props;
-        yoHelper.rewriteProps(props);
-        this.props.ShortProjectName = this.props.ProjectName.slice(4);
-      }.bind(this)
-    );
+    return this.prompt(prompts).then((props) => {
+      this.props = props;
+      yoHelper.rewriteProps(props);
+      this.props.ShortProjectName = this.props.ProjectName.slice(4);
+    });
   }
 
   writing() {
@@ -56,9 +66,10 @@ module.exports = class extends Generator {
       "boilerplate-next-class",
       function (err, cachePath) {
         // copy files:
-        this.fs.copy(
+        this.fs.copyTpl(
           glob.sync(resolve(cachePath, "{**,.*}")),
-          this.destinationPath()
+          this.destinationPath(),
+          this.props,
         );
         done();
       }.bind(this)
