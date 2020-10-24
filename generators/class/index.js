@@ -9,9 +9,9 @@ const yoHelper = require("@feizheng/yeoman-generator-helper");
 const replace = require("replace-in-file");
 const fs = require("fs");
 
-require('@afeiship/next-npm-registries');
+require("@afeiship/next-npm-registries");
 
-const NPM_CHOICES = ['npm', 'github', 'alo7'].map(item => {
+const NPM_CHOICES = ["npm", "github", "alo7"].map(item => {
   return { name: item, value: nx.npmRegistries(item) };
 });
 
@@ -31,12 +31,12 @@ module.exports = class extends Generator {
         type: "input",
         name: "scope",
         message: "Your scope (eg: `babel` )?",
-        default: 'feizheng'
+        default: "feizheng"
       },
       {
-        type: 'list',
-        name: 'registry',
-        message: 'Your registry',
+        type: "list",
+        name: "registry",
+        message: "Your registry",
         choices: NPM_CHOICES
       },
       {
@@ -48,11 +48,12 @@ module.exports = class extends Generator {
       {
         type: "input",
         name: "description",
-        message: "Your description?"
+        message: "Your description?",
+        validate: Boolean
       }
     ];
 
-    return this.prompt(prompts).then((props) => {
+    return this.prompt(prompts).then(props => {
       this.props = props;
       yoHelper.rewriteProps(props);
       this.props.ShortProjectName = this.props.ProjectName.slice(4);
@@ -64,12 +65,12 @@ module.exports = class extends Generator {
     remote(
       "afeiship",
       "boilerplate-next-class",
-      function (err, cachePath) {
+      function(err, cachePath) {
         // copy files:
         this.fs.copyTpl(
           glob.sync(resolve(cachePath, "{**,.*}")),
           this.destinationPath(),
-          this.props,
+          this.props
         );
         done();
       }.bind(this)
