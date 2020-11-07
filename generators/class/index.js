@@ -31,7 +31,7 @@ module.exports = class extends Generator {
         type: "input",
         name: "scope",
         message: "Your scope (eg: `babel` )?",
-        default: "feizheng"
+        default: "jswork"
       },
       {
         type: "list",
