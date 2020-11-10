@@ -6,7 +6,7 @@
 
     ```bash
     npm install -g yo
-    npm install -g @feizheng/generator-next
+    npm install -g @jswork/generator-next
     ```
 
 2. Then generate your new project:
@@ -14,6 +14,6 @@
 ## commands
 
 ```bash
-yo @feizheng/next:class
-yo @feizheng/next:pack
+yo @jswork/next:class
+yo @jswork/next:pack
 ```

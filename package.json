@@ -1,5 +1,5 @@
 {
-  "name": "@feizheng/generator-next",
+  "name": "@jswork/generator-next",
   "version": "1.0.0",
   "description": "Generator for next.",
   "homepage": "https://github.com/afeiship/generator-next",
@@ -13,10 +13,11 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "next",
+    "yeoman",
     "class",
+    "next",
     "package",
-    "yeoman-generator"
+    "yo"
   ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",
