@@ -92,10 +92,5 @@ module.exports = class extends Generator {
       ],
       to: [scope, description, project_name, ShortProjectName]
     });
-
-    fs.renameSync(
-      `${dest}/src/next-boilerplate-class.js`,
-      `${dest}/src/${project_name}.js`
-    );
   }
 };
