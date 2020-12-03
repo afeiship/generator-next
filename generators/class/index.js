@@ -5,15 +5,10 @@ const yosay = require("yosay");
 const glob = require("glob");
 const { resolve } = require("path");
 const remote = require("yeoman-remote");
-const yoHelper = require("@feizheng/yeoman-generator-helper");
 const replace = require("replace-in-file");
-const fs = require("fs");
+const yoHelper = require("@jswork/yeoman-generator-helper");
 
-require("@afeiship/next-npm-registries");
-
-const NPM_CHOICES = ["npm", "github", "alo7"].map(item => {
-  return { name: item, value: nx.npmRegistries(item) };
-});
+require("@jswork/next-registry-choices");
 
 module.exports = class extends Generator {
   prompting() {
@@ -37,7 +32,7 @@ module.exports = class extends Generator {
         type: "list",
         name: "registry",
         message: "Your registry",
-        choices: NPM_CHOICES
+        choices: nx.RegistryChoices.gets()
       },
       {
         type: "input",
@@ -80,7 +75,6 @@ module.exports = class extends Generator {
   end() {
     const { scope, project_name, description, ShortProjectName } = this.props;
     const files = glob.sync(resolve(this.destinationPath(), "{**,.*}"));
-    const dest = this.destinationPath();
 
     replace.sync({
       files,
