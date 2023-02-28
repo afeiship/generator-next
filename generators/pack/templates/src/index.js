@@ -4,12 +4,12 @@
   var defaults = { context: global };
 
   // var Nx<%- ctx.classify(project_name) %>
-  nx.<%- ctx.camelize(String(project_name).substr(5)) %> = function (inOptions) {
+  nx.<%- ctx.camelize(String(project_name).slice(5)) %> = function (inOptions) {
     var options = nx.mix(null, defaults, inOptions);
     // package codes...
   };
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = nx.<%- ctx.camelize(project_name.substr(5)) %>;
+    module.exports = nx.<%- ctx.camelize(project_name.slice(5)) %>;
   }
 })();
