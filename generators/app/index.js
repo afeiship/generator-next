@@ -26,12 +26,15 @@ module.exports = class extends Generator {
       this.destinationPath(),
       { ...this.props, ctx: yoHelper.ctx }
     );
+
+    this.__didWriting();
   }
 
-  end() {
+  __didWriting() {
+    console.log('after writing...');
     const { type } = this.props;
     const dtype = type === 'class' ? 'pack' : 'class';
-    this.fs.delete(this.destinationPath(`src/index.${dtype}.js`));
-    this.fs.move(this.destinationPath(`src/index.${type}.js`), this.destinationPath(`src/index.js`));
+    this.deleteDestination(`src/index.${dtype}.js`);
+    this.moveDestination(`src/index.${type}.js`, 'src/index.js');
   }
 };
