@@ -26,7 +26,7 @@
       .src('src/*.js')
       .pipe($.jswork.pkgHeader())
       .pipe($.replace('global || this || window', 'global || this'))
-      .pipe($.replace(/if \(typeof module !== 'undefined' && module\.exports.*\s+.*\s+}/, 'export default nx.qs;'))
+      .pipe($.replace(/if \(typeof module !== 'undefined' && module\.exports.*\s+.*\s+}/, 'export default _NX_EXPORT_;'))
       .pipe($.rename({ extname: '.esm.js' }))
       .pipe(gulp.dest('dist'));
   });

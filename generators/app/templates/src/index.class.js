@@ -11,5 +11,5 @@ var Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- ct
 });
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Nx <%- ctx.classify(String(project_name).slice(5)) %>;
+  module.exports = Nx<%- ctx.classify(String(project_name).slice(5)) %>;
 }
