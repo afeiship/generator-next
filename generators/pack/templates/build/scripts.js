@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   const gulp = require('gulp');
@@ -7,7 +7,7 @@
     pattern: ['gulp-*', 'gulp.*', 'del', '@jswork/gulp-*']
   });
 
-  gulp.task('scripts:main', function () {
+  gulp.task('scripts', function() {
     return gulp
       .src('src/*.js')
       // .pipe($.babel())
@@ -15,15 +15,8 @@
       .pipe(gulp.dest('dist'))
       .pipe($.size({ title: '[ default size ]:' }))
       .pipe($.uglify({ output: { comments: saveLicense } }))
-  });
-
-  gulp.task('scripts:esm', () => {
-    return gulp
-      .src('src/*.js')
-      .pipe($.jswork.pkgHeader())
-      .pipe($.jswork.rename({ extname: '.esm.js' }))
+      .pipe($.rename({ extname: '.min.js' }))
       .pipe(gulp.dest('dist'))
-  })
-
-  gulp.task('scripts', gulp.series('scripts:main', 'scripts:esm'));
+      .pipe($.size({ title: '[ minimize size ]:' }));
+  });
 })();
