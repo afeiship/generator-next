@@ -8,7 +8,7 @@ const yoHelper = require("@jswork/yeoman-generator-helper");
 module.exports = class extends Generator {
   async prompting() {
     // Have Yeoman greet the user.
-    this.log(`Welcome to the stunning "generator-next-class" generator!`);
+    this.log(`Welcome to the stunning "generator-next-package" generator!`);
     this.props = await this.prompt(prompts);
   }
 
