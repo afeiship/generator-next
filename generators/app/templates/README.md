@@ -14,7 +14,6 @@ npm install -S @<%= scope %>/<%= project_name %>
 ## usage
 ```js
 import '@<%= scope %>/<%= project_name %>';
-require('@<%= scope %>/<%= project_name %>');
 
 //DOCS here!
 ```
