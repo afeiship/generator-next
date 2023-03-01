@@ -8,7 +8,7 @@ const globby = require("globby");
 module.exports = class extends Generator {
 
   get exportName() {
-    const { project_name, type } = this.props;
+    const { project_name, type } = this.props || {};
     if (type === 'class') return 'Nx' + nx.classify(String(project_name).slice(5));
     if (type === 'pack') return 'nx.' + nx.camelize(String(project_name).slice(5));
   }
@@ -31,11 +31,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       globby.sync(this.templatePath("**"), { dot: true }),
       this.destinationPath(),
-      { ...this.props, ctx: yoHelper.ctx }, null, {
-      process: function (content) {
-        return content.toString().replace('_NX_EXPORT_', this.exportName);
-      }
-    }
+      { ...this.props, ctx: yoHelper.ctx, export_name: this.exportName }
     );
 
     this.__didWriting();
