@@ -28,18 +28,15 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    const { type } = this.props;
+    const dtype = type === 'class' ? 'pack' : 'class';
+
     this.fs.copyTpl(
       globby.sync(this.templatePath("**"), { dot: true }),
       this.destinationPath(),
       { ...this.props, ctx: yoHelper.ctx, export_name: this.exportName }
     );
 
-    this.__didWriting();
-  }
-
-  __didWriting() {
-    const { type } = this.props;
-    const dtype = type === 'class' ? 'pack' : 'class';
     this.deleteDestination(`src/index.${dtype}.js`);
     this.moveDestination(`src/index.${type}.js`, 'src/index.js');
   }
