@@ -19,9 +19,6 @@
     "package",
     "yo"
   ],
-  "devDependencies": {
-    "prettier": "^1.15.2"
-  },
   "engines": {
     "npm": ">= 4.0.0"
   },
@@ -39,5 +36,8 @@
     "yosay": "^2.0.1"
   },
   "repository": "git@github.com:afeiship/generator-next.git",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.8.4"
+  }
 }
