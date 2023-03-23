@@ -31,7 +31,7 @@ module.exports = class extends Generator {
   writing() {
     const { type } = this.props;
     const classify = type === "class";
-    const dtype = type === "class" ? "pack" : "class";
+    const dtype = classify ? "pack" : "class";
 
     this.fs.copyTpl(
       globby.sync(this.templatePath("**"), { dot: true }),
