@@ -24,15 +24,13 @@
   },
   "dependencies": {
     "@jswork/generator-prompts": "^1.1.8",
-    "@jswork/next": "^1.0.2",
+    "@jswork/next": "^1.1.5",
     "@jswork/next-camelize": "^1.0.0",
-    "@jswork/next-npm-registries": "^1.0.1",
-    "@jswork/next-registry-choices": "^1.0.0",
+    "@jswork/next-npm-registries": "^1.0.2",
+    "@jswork/next-registry-choices": "^1.0.1",
     "@jswork/yeoman-generator-helper": "^1.0.9",
     "chalk": "^2.1.0",
     "globby": "11",
-    "yeoman-generator": "^5.8.0",
-    "yeoman-remote": "^1.0.1",
     "yosay": "^2.0.1"
   },
   "repository": "git@github.com:afeiship/generator-next.git",
