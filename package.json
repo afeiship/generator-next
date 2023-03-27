@@ -28,6 +28,7 @@
     "@jswork/next-camelize": "^1.0.0",
     "@jswork/next-npm-registries": "^1.0.2",
     "@jswork/next-registry-choices": "^1.0.1",
+    "@jswork/yeoman-generator": "^1.0.6",
     "@jswork/yeoman-generator-helper": "^1.0.9",
     "chalk": "^2.1.0",
     "globby": "11",

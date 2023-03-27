@@ -1,5 +1,5 @@
 "use strict";
-const Generator = require("yeoman-generator");
+const Generator = require("@jswork/yeoman-generator");
 const getp = require("@jswork/generator-prompts");
 const yoHelper = require("@jswork/yeoman-generator-helper");
 const prompts = getp(["scope", "registry", "project_name", "description"]);
