@@ -1,8 +1,7 @@
-var global = typeof window !== 'undefined' ? window : this || Function('return this')();
-var nx = global.nx || require('@jswork/next');
-var defaults = { context: global };
+import nx from '@jswork/next';
+const defaults = { context: global };
 
-var Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- ctx.classify(String(project_name).slice(5)) %>', {
+const Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- ctx.classify(String(project_name).slice(5)) %>', {
   methods: {
     init: function (inOptions) {
       this.options = nx.mix(null, defaults, inOptions);
@@ -13,3 +12,5 @@ var Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- ct
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = Nx<%- ctx.classify(String(project_name).slice(5)) %>;
 }
+
+export default Nx<%- ctx.classify(String(project_name).slice(5)) %>;
