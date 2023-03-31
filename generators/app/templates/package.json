@@ -33,11 +33,13 @@
     "jest-location-mock": "^1.0.9",
     "uglify-save-license": "^0.4.1"
   },
-  "presets": [
-    [
-      "@babel/preset-env"
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ]
     ]
-  ],
+  },
   "publishConfig": {
     "access": "<%= registry.access %>",
     "registry": "<%= registry.publish %>"
