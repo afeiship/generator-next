@@ -40,7 +40,7 @@ module.exports = class extends Generator {
         ...this.props,
         classify,
         ctx: yoHelper.ctx,
-        export_name: this.exportName,
+        exportName: this.exportName,
       }
     );
 

@@ -1,7 +1,7 @@
 import nx from '@jswork/next';
 const defaults = { context: global };
 
-const Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- ctx.classify(String(project_name).slice(5)) %>', {
+const Nx<%= exportName %> = nx.declare('nx.<%= exportName %>', {
   methods: {
     init: function (inOptions) {
       this.options = nx.mix(null, defaults, inOptions);
@@ -10,7 +10,7 @@ const Nx<%- ctx.classify(String(project_name).slice(5)) %> = nx.declare('nx.<%- 
 });
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = Nx<%- ctx.classify(String(project_name).slice(5)) %>;
+  module.exports = Nx<%= exportName %>;
 }
 
-export default Nx<%- ctx.classify(String(project_name).slice(5)) %>;
+export default Nx<%= exportName %>;
