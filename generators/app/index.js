@@ -8,10 +8,8 @@ const globby = require("globby");
 module.exports = class extends Generator {
   get exportName() {
     const { project_name, type } = this.props || {};
-    if (type === "class")
-      return "Nx" + nx.classify(String(project_name).slice(5));
-    if (type === "pack")
-      return "nx." + nx.camelize(String(project_name).slice(5));
+    if (type === "class") return nx.classify(String(project_name).slice(5));
+    if (type === "pack") return nx.camelize(String(project_name).slice(5));
   }
 
   async prompting() {
@@ -43,6 +41,8 @@ module.exports = class extends Generator {
         exportName: this.exportName,
       }
     );
+
+    console.log("cpfile.", this.destinationPath());
 
     this.deleteDestination(`src/index.${dtype}.js`);
     this.moveDestination(`src/index.${type}.js`, "src/index.js");
