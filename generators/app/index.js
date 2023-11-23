@@ -42,8 +42,7 @@ module.exports = class extends Generator {
       }
     );
 
-    console.log("cpfile.", this.destinationPath());
-
+    // todo: not work in node 20
     this.deleteDestination(`src/index.${dtype}.js`);
     this.moveDestination(`src/index.${type}.js`, "src/index.js");
   }
