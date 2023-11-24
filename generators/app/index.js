@@ -30,20 +30,24 @@ module.exports = class extends Generator {
     const { type } = this.props;
     const classify = type === "class";
     const dtype = classify ? "pack" : "class";
+    const filePatterns = ["**", `!src/index.${dtype}.js`];
+    const srcFiles = globby.sync(filePatterns, {
+      cwd: this.templatePath(),
+      absolute: true,
+    });
 
-    this.fs.copyTpl(
-      globby.sync(this.templatePath("**"), { dot: true }),
-      this.destinationPath(),
-      {
-        ...this.props,
-        classify,
-        ctx: yoHelper.ctx,
-        exportName: this.exportName,
-      }
-    );
+    const dest = this.destinationPath();
+    const context = {
+      ...this.props,
+      classify,
+      ctx: yoHelper.ctx,
+      exportName: this.exportName,
+    };
 
-    // todo: not work in node 20
-    this.deleteDestination(`src/index.${dtype}.js`);
-    this.moveDestination(`src/index.${type}.js`, "src/index.js");
+    this.fs.copyTpl(srcFiles, dest, context, null, {
+      processDestinationPath: (path) => {
+        return path.replace(`index.${type}.js`, "index.js");
+      },
+    });
   }
 };
