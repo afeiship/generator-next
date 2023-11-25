@@ -30,7 +30,7 @@ module.exports = class extends Generator {
     const { type } = this.props;
     const classify = type === "class";
     const dtype = classify ? "pack" : "class";
-    const filePatterns = ["*", ".*", `!src/index.${dtype}.js`];
+    const filePatterns = ["**", ".*", `!src/index.${dtype}.js`];
     const srcFiles = globby.sync(filePatterns, {
       cwd: this.templatePath(),
       absolute: true,
