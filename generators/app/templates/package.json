@@ -4,7 +4,8 @@
   "description": "<%= description %>",
   "homepage": "https://js.work",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "author": {
     "name": "afei",
