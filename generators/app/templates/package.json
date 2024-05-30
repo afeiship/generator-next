@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "gulp",
-    "test": "jest",
+    "test": "bun test",
     "release": "release-it"
   },
   "main": "dist/index.js",
@@ -32,8 +32,6 @@
     "gulp-replace": "^1.1.4",
     "gulp-uglify": "^3.0.2",
     "husky": "^9.0.11",
-    "jest": "^29.5.0",
-    "jest-location-mock": "^1.0.9",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "uglify-save-license": "^0.4.1"
